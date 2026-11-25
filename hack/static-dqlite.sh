@@ -51,7 +51,9 @@ if [ ! -f "${BUILD_DIR}/libtirpc/src/libtirpc.la" ]; then
     cd libtirpc
     chmod +x autogen.sh
     ./autogen.sh > /dev/null
-    ./configure --disable-shared --disable-gssapi > /dev/null
+    # libtirpc uses K&R-style declarations, which are invalid in C23 (the
+    # default since GCC 15, e.g. Ubuntu 26.04).
+    ./configure --disable-shared --disable-gssapi CFLAGS="${CFLAGS} -std=gnu17" > /dev/null
     make -j > /dev/null
   )
 fi
