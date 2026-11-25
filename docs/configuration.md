@@ -16,7 +16,6 @@ The following configuration options are available listed in a table format:
 | `--profiling` | Enable debug pprof endpoint | `false` |
 | `--profiling-dir` | Directory to use for profiling data | - |
 | `--profiling-listen` | The address to listen for pprof endpoint | `127.0.0.1:4000` |
-| `--disk-mode` | (Experimental) Run Dqlite store in disk mode | `false` |
 | `--tls-client-session-cache-size` | ClientCacheSession size for dial TLS config | `0` |
 | `--min-tls-version` | Minimum TLS version for Dqlite endpoint supported values: (tls10, tls11, tls12, tls13) | `tls12` |
 | `--metrics` | Enable metrics endpoint | `false` |

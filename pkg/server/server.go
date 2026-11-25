@@ -112,7 +112,6 @@ func New(
 	dir string,
 	listen string,
 	enableTLS bool,
-	diskMode bool,
 	clientSessionCacheSize uint,
 	minTLSVersion string,
 	watchAvailableStorageInterval time.Duration,
@@ -347,14 +346,6 @@ func New(
 
 	logrus.WithFields(logrus.Fields{"threshold": snapshotParameters.Threshold, "trailing": snapshotParameters.Trailing}).Print("configure dqlite raft snapshot parameters")
 	options = append(options, app.WithSnapshotParams(snapshotParameters))
-
-	if diskMode {
-		logrus.Print("enable dqlite disk mode operation")
-		options = append(options, app.WithDiskMode(true))
-
-		// TODO: remove after disk mode is stable
-		logrus.Warn("dqlite disk mode operation is current at an experimental state and MUST NOT be used in production. Expect data loss.")
-	}
 
 	// FIXME: this also starts dqlite. It should be moved to `Start`.
 	app, err := app.New(dir, options...)
